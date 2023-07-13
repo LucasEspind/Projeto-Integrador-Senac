@@ -1,4 +1,0 @@
-from CadastroUsuarios import atualizarCadastroUsuario
-
-
-atualizarCadastroUsuario()
