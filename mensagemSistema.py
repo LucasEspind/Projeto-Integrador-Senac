@@ -6,3 +6,9 @@ def resetColor():
 
 def mensagemErro():
     print("Algum dado foi preenchido de forma incorreta ou é inexistente!")
+
+def linha():
+    print("----------------------------------------------------------------")
+
+def pularLinha():
+    print("")

@@ -2,8 +2,9 @@ from Pessoa import *
 
 
 class Usuario(Pessoa):
-    def __init__(self, Nome, Cargo, Setor, Email, Password):
+    def __init__(self, Nome, Cargo, Setor, Email, Login, Password,):
         super().__init__(Nome, Cargo, Setor, Email, Password)
+        self._login = Login
         self._permissao = "User"
     
     @property
@@ -45,3 +46,11 @@ class Usuario(Pessoa):
     @password.setter
     def password(self, NovoPassword):
         self._Password = NovoPassword
+    
+    @property
+    def login(self):
+        return self._login
+    
+    @login.setter
+    def login(self, NovoLogin):
+        self._login = NovoLogin
