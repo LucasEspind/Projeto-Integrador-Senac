@@ -2,7 +2,6 @@ from time import sleep
 import mysql.connector
 from Item import *
 from mensagemSistema import *
-from CadastroAdmin import ProgramaAdmin
 
 # CRUD
 
@@ -105,12 +104,15 @@ def excluirItem():
 
 
 def EstoqueAdmin():
-    escolha = str(input("O que quer fazer:\n1 - Cadastrar Novo Item\n2 - Procurar por um Item\n3 - Atualizar Item existente\n4 - Excluir Item"))
-    if escolha == 1 or escolha.upper().startswith("N"):
+    escolha = str(input("O que quer fazer:\n1 - Cadastrar Novo Item\n2 - Procurar por um Item\n3 - Atualizar Item existente\n4 - Excluir Item\nEscolha: "))
+    if escolha == '1':
         cadastrarItem()
-    if escolha == 2 or escolha.upper().startswith("P"):
+    elif escolha == '2':
         procurarItem()
-    if escolha == 3 or escolha.upper().startswith("A"):
+    elif escolha == '3':
         atualizarItem()
-    if escolha == 4 or escolha.upper().startswith("E"):
+    elif escolha == '4':
         excluirItem()
+    else:
+        print("Opção inválida.")
+        EstoqueAdmin()

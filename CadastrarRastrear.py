@@ -12,7 +12,6 @@ conexao = mysql.connector.connect(
 
 cursor = conexao.cursor()
 
-rastrear = Rastrear(1)
 
 # CREATE
 def realizarPedido():
