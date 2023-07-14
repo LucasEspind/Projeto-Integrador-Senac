@@ -64,11 +64,13 @@ def loginUsuario():
             cursor.execute(comando, valores)
             conta = cursor.fetchall()
             if conta:
-                break
+                ProgramaUsuario()
             else:
                 mensagemErro()
+                loginUsuario()
         except:
             mensagemErro()
+            loginUsuario()
 
 
 # UPDATE

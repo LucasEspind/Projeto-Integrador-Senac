@@ -40,10 +40,10 @@ def cadastrarAdmin():
         )
         cursor.execute(comando, valores)
         conexao.commit()
-        ProgramaAdmin()
     except:
         mensagemErro()
         cadastrarAdmin()
+    ProgramaAdmin()
 
 
 # READ
@@ -150,11 +150,11 @@ def deletarAdmin():
         cursor.execute(comando)
         conexao.commit()
         print("Admin excluído com sucesso!")
-        ProgramaAdmin()
+        
     except:
         mensagemErro()
         sleep(2)
-        ProgramaAdmin()
+    ProgramaAdmin()   
 
 
 # Programa
