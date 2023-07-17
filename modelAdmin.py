@@ -1,4 +1,4 @@
-from Pessoa import *
+from modelPessoa import *
 
 
 class Admin(Pessoa):

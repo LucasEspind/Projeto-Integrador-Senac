@@ -1,10 +1,9 @@
 from time import sleep
 import mysql.connector
-from Admin import *
+from controllerAdmin import *
 from mensagemSistema import *
-from CadastrarRastrear import *
-from CadastroItems import *
-from CadastroUsuarios import *
+from modelAdmin import *
+
 
 conexao = mysql.connector.connect(
     host="localhost",
@@ -19,7 +18,7 @@ cursor = conexao.cursor()
 
 
 # CREATE
-def cadastrarAdmin():
+def createAdmin():
     try:
         nome = input("Nome: ")
         cargo = input("Cargo: ")
@@ -42,8 +41,6 @@ def cadastrarAdmin():
         conexao.commit()
     except:
         mensagemErro()
-        cadastrarAdmin()
-    ProgramaAdmin()
 
 
 # READ
@@ -54,6 +51,7 @@ def loginAdmin():
     valores = (login, senha)
     cursor.execute(comando, valores)
     conta = cursor.fetchall()
+
     if conta:
         if conta[0][7] != "Admin":
             print("A conta em questão não possui permissões de administrador")
@@ -62,7 +60,8 @@ def loginAdmin():
                 input(f"Seu nome é {conta[0][1]}?\n1 - Sim\n2 - Não\nEscolha: ")
             )
             if verificar == 1:
-                ProgramaAdmin()
+                # ProgramaAdmin()
+                pass
             elif verificar == 2:
                 continuar = int(
                     input("Deseja tentar logar novamente?\n1 - Sim\n2 - Não\nEscolha: ")
@@ -78,7 +77,7 @@ def loginAdmin():
 
 
 # UPDATE
-def atualizarCadastroAdmin():
+def updateAdmin():
     nomeAtt = input("Qual admin deseja atualizar? ")
     setorAtt = input("Qual o setor? ")
     while True:
@@ -112,7 +111,7 @@ def atualizarCadastroAdmin():
                 except:
                     mensagemErro()
                     sleep(2)
-                    atualizarCadastroAdmin()
+                    #atualizarCadastroAdmin()
             else:
                 colunaEscolhida = atualizar[int(colunaAtt) - 1][0]
                 novoValor = input(
@@ -129,7 +128,7 @@ def atualizarCadastroAdmin():
                 except:
                     mensagemErro()
                     sleep(2)
-                    atualizarCadastroAdmin()
+                    #atualizarCadastroAdmin()
         else:
             print("Número da coluna inválido.")
         continuar = input("Deseja atualizar outra coluna?\n1 - Sim\n2 - Não\nEscolha: ")
@@ -138,11 +137,11 @@ def atualizarCadastroAdmin():
         elif int(continuar) == 2 and int(continuar) == 1 and continuar.upper()[0] != "S":
             mensagemErro()
             break
-        ProgramaAdmin()
+
 
 
 # DELETE
-def deletarAdmin():
+def deleteAdmin():
     nomeExcluir = input("Nome: ")
     setorExcluir = input("Setor: ")
     try:
@@ -154,33 +153,3 @@ def deletarAdmin():
     except:
         mensagemErro()
         sleep(2)
-    ProgramaAdmin()   
-
-
-# Programa
-def ProgramaAdmin():
-    escolha = int(
-        input(
-            "O que deseja visualizar:\n1 - Gerenciamento de Estoque\n2 - Gerenciamento de Rastreamento\n3 - Gerenciamento de Admin\n4 - Gerenciamento de Usuários\n5 - Sair\nEscolha: "
-        )
-    )
-    if escolha == 1:
-        EstoqueAdmin()
-    elif escolha == 2:
-        RastrearAdmin()
-    elif escolha == 3:
-        escolha = int(input("O que deseja fazer:\n1 - Cadastrar novo Admin\n2 - Atualizar Cadastro de Admin\n3 - Deletar cadastro de Admin\nEscolha: "))
-        if escolha == 1:
-            cadastrarAdmin()
-        elif escolha == 2:
-            atualizarCadastroAdmin()
-        elif escolha == 3:
-            deletarAdmin()
-    elif escolha == 4:
-        ProgramaUsuarioAdmin()
-    elif escolha == 5:
-        return
-    else:
-        print("Escolha Inválida!")
-        sleep(2)
-        ProgramaAdmin()
