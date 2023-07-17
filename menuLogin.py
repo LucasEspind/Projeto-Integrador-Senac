@@ -1,5 +1,5 @@
 from time import sleep
-from controllerUser import registerUser, userLogin
+from controllerUsers import registerUser, userLogin
 from mensagemSistema import purple, resetColor
 from menuAdmin import registerUserMenu
 

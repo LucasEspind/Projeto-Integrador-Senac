@@ -88,7 +88,6 @@ def updateUser(nomeAtt, setorAtt):
     valores = (nomeAtt, setorAtt)
     cursor.execute(comando, valores)
     conta = cursor.fetchone()
-    print(conta)
     if conta:
         while True:
             comando = "SHOW COLUMNS FROM usuario"
@@ -97,6 +96,7 @@ def updateUser(nomeAtt, setorAtt):
             atualizar.pop(0)
             for indice, colunas in enumerate(atualizar, start=1):
                 print(f"{indice} - {colunas[0]}", end=" | ".capitalize())
+            print()
 
             colunaAtt = input("\nInforme o número da coluna a ser atualizada: ")
 
