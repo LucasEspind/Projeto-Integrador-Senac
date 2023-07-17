@@ -40,20 +40,25 @@ def loginMenu():
             email = input("Email: ")
             login = input("Login: ")
             password = input("Senha: ")
-            while True:
-                print("1 - Admin\n2 - Usuário")
-                tipo = input()
-                if int(tipo) == 1 or tipo.upper().startswith("A"):
-                    register = registerUser(nome, cargo, setor, email, login, password, True)
-                    break
-                elif int(tipo) == 2 or tipo.upper().startswith("U"):
-                    register = registerUser(nome, cargo, setor, email, login, password, False)
+            if len(password) < 5:
+                print("A senha deve ter pelo menos 5 caracteres!")
+            elif " " in password:
+                print("Não pode conter espaços na sua senha!")
+            else:
+                while True:
+                    print("1 - Admin\n2 - Usuário")
+                    tipo = input()
+                    if int(tipo) == 1 or tipo.upper().startswith("A"):
+                        register = registerUser(nome, cargo, setor, email, login, password, True)
+                        break
+                    elif int(tipo) == 2 or tipo.upper().startswith("U"):
+                        register = registerUser(nome, cargo, setor, email, login, password, False)
+                        break
+                    else:
+                        print("Verifique os dados informados e tente novamente!")
+                if register:
+                    print("Usuário registrado com sucesso!")
                     break
                 else:
                     print("Verifique os dados informados e tente novamente!")
-            if register:
-                print("Usuário registrado com sucesso!")
-                break
-            else:
-                print("Verifique os dados informados e tente novamente!")
         sleep(2)
